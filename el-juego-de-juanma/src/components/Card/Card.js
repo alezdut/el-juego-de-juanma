@@ -5,7 +5,7 @@ const Card = (props) => {
     const {symbol, multiplier, key} = props.values
 
     const onClickHandler = (e) => {
-        props.setValue(calculator[symbol](props.value, multiplier))
+        props.setValue(calculator[symbol](Number(props.value), Number(multiplier)))
     }
 
     const onDeleteHandler = () => {
