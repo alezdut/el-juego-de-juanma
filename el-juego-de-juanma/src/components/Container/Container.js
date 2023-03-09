@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import Operation from '../Operation/Operation'
 import Title from '../Title/Title'
 import CardContainer from './CardContainer/CardContainer'
 import styles from './Container.module.css'
@@ -15,7 +14,13 @@ const Container = () => {
 
     const addCardHandler = () => {
         setCards((prevCards) => {
-             return [...prevCards, {symbol: symbol, value: multiplier}]
+             return [...prevCards, {symbol: symbol, multiplier: multiplier, key: Math.random() * 10}]
+        })
+    }
+
+    const removeCardHandler = (key) => {
+        setCards((prevCards) => {
+            return prevCards.filter(c => c.key !== key)
         })
     }
 
@@ -23,7 +28,7 @@ const Container = () => {
         <Title/>
         <OperationContainer setSymbol={setSymbol}/>
         <InputContainer value={value} addCardHandler={addCardHandler} setValue={setMultiplier}/>
-        <CardContainer cards={cards}/>
+        <CardContainer cards={cards} value={value} setValue={setValue} removeCardHandler={removeCardHandler}/>
     </div>
 }
 

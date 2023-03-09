@@ -1,15 +1,26 @@
 import styles from './Card.module.css';
+import { calculator } from '../../common/utils/utils';
 
 const Card = (props) => {
+    const {symbol, multiplier, key} = props.values
+
+    const onClickHandler = (e) => {
+        props.setValue(calculator[symbol](props.value, multiplier))
+    }
+
+    const onDeleteHandler = () => {
+        props.removeCardHandler(key)
+    }
+
     return <div className={styles.card}>
         <div className={styles.cardValues}>
-            <p>{`${props.symbol} ${props.value}`}</p>
+            <p>{`${symbol} ${multiplier}`}</p>
         </div>
         <div className={styles.cardButtons}>
-            <button className={styles.button}>
+            <button onClick={onClickHandler} className={styles.button}>
                 APPLY
             </button>
-            <button className={styles.button}>
+            <button onClick={onDeleteHandler} className={styles.button}>
                 DELETE
             </button>
         </div>
